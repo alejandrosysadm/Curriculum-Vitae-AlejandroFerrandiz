@@ -1,718 +1,540 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alejandro Ferrándiz Pérez · Sysadmin & IT</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alejandro Ferrándiz Pérez — Sysadmin & IT Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f6f3;
+  --surface:#ffffff;
+  --surface2:#f0ede8;
+  --border:#e2ded8;
+  --border2:#ccc8c0;
+  --text:#1a1916;
+  --text2:#5a574f;
+  --text3:#8a877f;
+  --accent:#1a3a2a;
+  --accent-light:#e8f0eb;
+  --accent-mid:#2d6645;
+  --gold:#8b6914;
+  --gold-light:#faf4e6;
+  --gold-border:#e8d5a3;
+  --blue-light:#eaeff5;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 
-    :root {
-      --bg: #0a0a0f;
-      --surface: #111118;
-      --surface2: #18181f;
-      --border: rgba(255,255,255,0.07);
-      --accent: #c8f542;
-      --accent2: #42f5c8;
-      --text: #e8e8f0;
-      --muted: #6b6b80;
-      --heading: #ffffff;
-    }
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(247,246,243,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 32px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.topbar-name{font-weight:700;font-size:14px;color:var(--accent);letter-spacing:-.01em}
+.topbar-nav{display:flex;gap:4px}
+.topbar-nav a{font-size:13px;color:var(--text2);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all .15s;font-weight:500}
+.topbar-nav a:hover{background:var(--surface2);color:var(--text)}
+.dl-btn{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:7px 16px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;letter-spacing:.01em;transition:all .15s;border:none;cursor:pointer}
+.dl-btn:hover{background:var(--accent-mid)}
 
-    html { scroll-behavior: smooth; }
+/* HERO */
+.hero{background:var(--surface);border-bottom:1px solid var(--border);padding:64px 0 0;position:relative;overflow:hidden}
+.hero-inner{max-width:1120px;margin:0 auto;padding:0 40px}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end;padding-bottom:48px}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:20px}
+.avail-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-mid);animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(45,102,69,.4)}50%{box-shadow:0 0 0 6px rgba(45,102,69,0)}}
+h1{font-size:clamp(42px,6vw,76px);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--text);margin-bottom:6px}
+h1 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent-mid)}
+.hero-sub{font-size:15px;color:var(--text2);font-weight:400;margin-top:18px;max-width:520px;line-height:1.7}
+.hero-sub strong{color:var(--text);font-weight:600}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.hero-tag{font-size:12px;font-weight:600;letter-spacing:.04em;padding:5px 13px;border-radius:100px;border:1px solid var(--border2);color:var(--text2);background:var(--surface2)}
+.hero-contact{display:flex;flex-direction:column;gap:10px;align-items:flex-end;padding-bottom:4px}
+.clink{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;padding:9px 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);transition:all .15s;white-space:nowrap}
+.clink:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light)}
+.clink svg{width:15px;height:15px;opacity:.7;flex-shrink:0}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Mono', monospace;
-      font-size: 14px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+/* STATS */
+.hero-stats{border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:24px 32px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-size:32px;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+.stat-n span{color:var(--accent-mid)}
+.stat-l{font-size:12px;color:var(--text3);font-weight:500}
 
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: .5;
-    }
+/* LAYOUT */
+.page{max-width:1120px;margin:0 auto;padding:56px 40px}
+.two-col{display:grid;grid-template-columns:1fr 340px;gap:40px}
 
-    /* ── ANIMATED GRADIENT BG ── */
-    .bg-glow {
-      position: fixed;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .bg-glow-1 {
-      background: radial-gradient(circle, rgba(200,245,66,.12) 0%, transparent 70%);
-      top: -200px; left: -200px;
-      animation: float1 18s ease-in-out infinite;
-    }
-    .bg-glow-2 {
-      background: radial-gradient(circle, rgba(66,245,200,.08) 0%, transparent 70%);
-      bottom: -200px; right: -200px;
-      animation: float2 22s ease-in-out infinite;
-    }
-    @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(80px,60px)} }
-    @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-60px,-80px)} }
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-mid);font-weight:500;letter-spacing:.08em}
+.sec-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
+.sec-line{flex:1;height:1px;background:var(--border)}
 
-    /* ── LAYOUT ── */
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+/* EXP CARDS */
+.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:16px;overflow:hidden;transition:border-color .15s}
+.exp-card:hover{border-color:var(--border2)}
+.exp-head{padding:24px 28px 0}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px}
+.exp-role{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1.2}
+.exp-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 11px;border-radius:100px;flex-shrink:0}
+.b-active{background:var(--accent-light);color:var(--accent-mid);border:1px solid rgba(45,102,69,.2)}
+.b-active::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent-mid)}
+.b-past{background:var(--surface2);color:var(--text3);border:1px solid var(--border)}
+.b-intern{background:var(--gold-light);color:var(--gold);border:1px solid var(--gold-border)}
+.exp-meta{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.exp-company{font-size:13px;font-weight:600;color:var(--text2);letter-spacing:.02em}
+.exp-period{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)}
+.sep{width:3px;height:3px;border-radius:50%;background:var(--border2)}
+.exp-div{height:1px;background:var(--border);margin:0 28px}
+.exp-body{padding:20px 28px 24px}
+.exp-ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.exp-ul li{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--text2);line-height:1.6}
+.exp-ul li::before{content:'';flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--accent-mid);margin-top:7px}
+.exp-ul li strong{color:var(--text);font-weight:600}
+.exp-techs{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.etag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;padding:3px 10px;border-radius:6px;background:var(--accent-light);color:var(--accent);border:1px solid rgba(26,58,42,.15)}
 
-    /* ── HEADER ── */
-    header {
-      position: relative;
-      padding: 80px 0 60px;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
+/* EDU */
+.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 26px;margin-bottom:12px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.edu-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.ei-cur{background:var(--accent-light)}
+.ei-asir{background:var(--blue-light)}
+.ei-bach{background:var(--gold-light)}
+.edu-deg{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.01em;line-height:1.3;margin-bottom:5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.in-prog{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 9px;border-radius:100px;background:var(--accent-light);color:var(--accent-mid);border:1px solid rgba(45,102,69,.2)}
+.edu-school{font-size:12.5px;color:var(--text2);font-weight:500;margin-bottom:3px}
+.edu-per{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)}
 
-    .header-inner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 48px;
-      align-items: end;
-    }
+/* SIDEBAR */
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.scard-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border)}
+.group-label{font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--text3);margin-bottom:8px;text-transform:uppercase}
+.tech-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.ttag{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;padding:5px 11px;border-radius:8px;background:var(--surface2);color:var(--text2);border:1px solid var(--border);cursor:default;transition:all .15s}
+.ttag:hover{background:var(--accent-light);color:var(--accent);border-color:rgba(26,58,42,.2);transform:translateY(-1px)}
+.ttag.hl{background:var(--accent-light);color:var(--accent);border-color:rgba(26,58,42,.25)}
 
-    .name-block {}
+/* CERT */
+.cert-row{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border)}
+.cert-row:last-child{border-bottom:none;padding-bottom:0}
+.cert-ico{width:40px;height:40px;border-radius:9px;flex-shrink:0;background:var(--gold-light);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:18px}
+.cert-name{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:3px}
+.cert-code{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:500}
+.cert-iss{font-size:12px;color:var(--text3);margin-top:2px}
 
-    .name-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: .2em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .name-label::before {
-      content: '';
-      display: inline-block;
-      width: 32px; height: 1px;
-      background: var(--accent);
-    }
+/* LANG */
+.lang-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border)}
+.lang-row:last-child{border-bottom:none}
+.lang-name{font-size:13.5px;font-weight:600;color:var(--text)}
+.lang-lv{font-size:11px;color:var(--text3);margin-top:1px}
+.lang-bar{width:72px;height:5px;border-radius:3px;background:var(--surface2);overflow:hidden}
+.lang-fill{height:100%;border-radius:3px;background:var(--accent-mid)}
 
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(48px, 7vw, 88px);
-      font-weight: 800;
-      line-height: .95;
-      color: var(--heading);
-      letter-spacing: -.03em;
-    }
+/* SKILLS */
+.skill-pill{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:500;color:var(--text2);padding:10px 14px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);margin-bottom:8px;transition:all .15s}
+.skill-pill:last-child{margin-bottom:0}
+.skill-pill:hover{border-color:var(--border2);color:var(--text)}
 
-    h1 .last-name {
-      color: transparent;
-      -webkit-text-stroke: 1.5px rgba(255,255,255,0.35);
-    }
+/* PROFILE CARD */
+.profile-card{background:linear-gradient(135deg,#1a3a2a 0%,#2d6645 100%);border-radius:14px;padding:28px;margin-bottom:40px}
+.profile-q{font-family:'Instrument Serif',serif;font-size:20px;font-weight:400;font-style:italic;color:rgba(255,255,255,.92);line-height:1.65;margin-bottom:16px}
+.profile-meta{font-size:12px;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
 
-    .title-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 24px;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 12px;
-      font-family: 'DM Mono', monospace;
-      color: var(--muted);
-      background: var(--surface);
-    }
-    .title-badge .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+/* META ROW */
+.meta-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:9px 0;border-bottom:1px solid var(--border)}
+.meta-row:last-child{border-bottom:none}
+.meta-label{color:var(--text2);font-weight:500}
+.meta-val{color:var(--text);font-weight:600}
+.meta-badge{background:var(--accent-light);color:var(--accent-mid);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
 
-    .header-meta {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+/* FOOTER */
+footer{border-top:1px solid var(--border);max-width:1120px;margin:0 auto;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.footer-name{font-size:13px;font-weight:700;color:var(--text)}
+.footer-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)}
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .contact-item:hover { color: var(--accent); }
+/* PRINT */
+@media print{.topbar{display:none}body{background:#fff}.exp-card,.edu-card,.scard{box-shadow:none}}
 
-    .contact-icon {
-      width: 28px; height: 28px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px;
-      background: var(--surface);
-      flex-shrink: 0;
-    }
+/* RESPONSIVE */
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-contact{align-items:flex-start}.hero-stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.topbar-nav{display:none}.page{padding:32px 20px}.hero-inner{padding:0 20px}.stat{padding:18px 20px}}
+@media(max-width:600px){h1{font-size:38px}.topbar{padding:0 16px}}
 
-    /* ── MAIN GRID ── */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 0;
-      min-height: 100vh;
-    }
-
-    .col-main {
-      border-right: 1px solid var(--border);
-      padding: 60px 60px 60px 0;
-    }
-
-    .col-side {
-      padding: 60px 0 60px 40px;
-    }
-
-    /* ── SECTION ── */
-    .section { margin-bottom: 56px; }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── PROFILE ── */
-    .profile-text {
-      font-family: 'Fraunces', serif;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 1.75;
-      color: rgba(232,232,240,.8);
-      font-style: italic;
-    }
-
-    /* ── EXPERIENCE ── */
-    .exp-item {
-      position: relative;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .exp-item:last-child { border-bottom: none; }
-
-    .exp-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: start;
-      margin-bottom: 6px;
-    }
-
-    .exp-role {
-      font-family: 'Syne', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--heading);
-      letter-spacing: -.01em;
-    }
-
-    .exp-period {
-      font-size: 11px;
-      color: var(--accent);
-      font-family: 'DM Mono', monospace;
-      white-space: nowrap;
-      letter-spacing: .05em;
-      padding: 3px 10px;
-      border: 1px solid rgba(200,245,66,.25);
-      border-radius: 100px;
-      background: rgba(200,245,66,.05);
-    }
-
-    .exp-company {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 16px;
-      letter-spacing: .05em;
-    }
-
-    .exp-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .exp-bullets li {
-      font-size: 13px;
-      color: rgba(232,232,240,.65);
-      padding-left: 16px;
-      position: relative;
-      line-height: 1.6;
-    }
-    .exp-bullets li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--accent2);
-      font-size: 10px;
-      top: 2px;
-    }
-
-    /* ── EDUCATION ── */
-    .edu-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .edu-item:last-child { border-bottom: none; }
-
-    .edu-degree {
-      font-family: 'Syne', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--heading);
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .edu-badge {
-      font-size: 9px;
-      font-family: 'DM Mono', monospace;
-      padding: 2px 8px;
-      border-radius: 100px;
-      background: rgba(200,245,66,.15);
-      color: var(--accent);
-      border: 1px solid rgba(200,245,66,.3);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .edu-school {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .edu-period {
-      font-size: 11px;
-      color: rgba(107,107,128,.7);
-    }
-
-    /* ── SIDEBAR ── */
-    .side-section { margin-bottom: 44px; }
-
-    .side-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* ── TECH PILLS ── */
-    .tech-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tech-pill {
-      font-size: 11px;
-      font-family: 'DM Mono', monospace;
-      padding: 5px 12px;
-      border-radius: 6px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: rgba(232,232,240,.7);
-      transition: all .2s;
-      cursor: default;
-    }
-    .tech-pill:hover {
-      border-color: rgba(200,245,66,.4);
-      color: var(--accent);
-      background: rgba(200,245,66,.05);
-      transform: translateY(-1px);
-    }
-
-    /* ── LANGUAGES ── */
-    .lang-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .lang-item:last-child { border-bottom: none; }
-    .lang-name { font-size: 13px; color: var(--text); }
-    .lang-level { font-size: 10px; color: var(--muted); letter-spacing: .1em; }
-
-    .lang-dots {
-      display: flex;
-      gap: 4px;
-    }
-    .lang-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--border);
-    }
-    .lang-dot.active { background: var(--accent); }
-
-    /* ── CERT ── */
-    .cert-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 10px;
-      position: relative;
-      overflow: hidden;
-    }
-    .cert-item::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: linear-gradient(to bottom, var(--accent), var(--accent2));
-    }
-    .cert-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--heading);
-      margin-bottom: 4px;
-    }
-    .cert-code {
-      font-size: 11px;
-      color: var(--accent);
-      font-family: 'DM Mono', monospace;
-    }
-
-    /* ── SKILLS ── */
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-      font-size: 12px;
-      color: rgba(232,232,240,.7);
-    }
-    .skill-item::before {
-      content: '◈';
-      color: var(--accent2);
-      font-size: 10px;
-      flex-shrink: 0;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .header-inner { grid-template-columns: 1fr; }
-      .header-meta { text-align: left; }
-      .contact-item { justify-content: flex-start; }
-      .main-grid { grid-template-columns: 1fr; }
-      .col-main { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 0; }
-      .col-side { padding: 40px 0; }
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 48px 0 40px; }
-      h1 { font-size: 42px; }
-    }
-  </style>
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
 </head>
 <body>
-  <div class="bg-glow bg-glow-1"></div>
-  <div class="bg-glow bg-glow-2"></div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <div class="name-block">
-          <div class="name-label">Curriculum Vitae</div>
-          <h1>
-            Alejandro<br>
-            Ferrándiz<br>
-            <span class="last-name">Pérez</span>
-          </h1>
-          <div class="title-badge">
-            <span class="dot"></span>
-            Administrador de Sistemas · Técnico IT
+<nav class="topbar">
+  <div class="topbar-name">Alejandro Ferrándiz Pérez</div>
+  <div class="topbar-nav">
+    <a href="#experiencia">Experiencia</a>
+    <a href="#formacion">Formación</a>
+    <a href="#tecnologias">Tecnologías</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <button class="dl-btn" onclick="window.print()">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11v2a1 1 0 001 1h10a1 1 0 001-1v-2M8 2v8M5 7l3 3 3-3"/></svg>
+    Descargar PDF
+  </button>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div>
+        <div class="avail"><div class="avail-dot"></div>Disponible · Alicante, España</div>
+        <h1>Alejandro<br><em>Ferrándiz</em><br>Pérez</h1>
+        <p class="hero-sub">
+          <strong>Administrador de Sistemas con +5 años</strong> en entornos empresariales complejos. Especialista en infraestructuras IT, virtualización, seguridad perimetral y ecosistema Microsoft 365. Actualmente cursando DAM para ampliar competencias en desarrollo de software.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">Infrastructure</span>
+          <span class="hero-tag">Virtualization</span>
+          <span class="hero-tag">Microsoft 365</span>
+          <span class="hero-tag">Network Security</span>
+          <span class="hero-tag">Cloud</span>
+          <span class="hero-tag">Backup &amp; Recovery</span>
+        </div>
+      </div>
+      <div class="hero-contact" id="contacto">
+        <a href="mailto:alejandro.ferrandiz@icloud.com" class="clink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          alejandro.ferrandiz@icloud.com
+        </a>
+        <div class="clink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Alicante · Comunitat Valenciana
+        </div>
+        <div class="clink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m2 20 6-3h8l6 3"/></svg>
+          Presencial · Híbrido · Remoto
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">5<span>+</span></div>
+        <div class="stat-l">Años de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">3<span>+</span></div>
+        <div class="stat-l">Años como Sysadmin</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">13</div>
+        <div class="stat-l">Tecnologías dominadas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">MS<span>-900</span></div>
+        <div class="stat-l">Certificación Microsoft</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="two-col">
+
+    <!-- LEFT -->
+    <div>
+      <div class="profile-card reveal">
+        <p class="profile-q">
+          "Técnico en Sistemas especializado en infraestructuras empresariales, virtualización y seguridad perimetral. Metódico, proactivo y orientado a la resolución de incidencias con impacto real en el negocio del cliente."
+        </p>
+        <div class="profile-meta">Perfil profesional · Lãberit S.L. · Alicante</div>
+      </div>
+
+      <div id="experiencia">
+        <div class="sec-head reveal">
+          <span class="sec-num">01</span>
+          <span class="sec-title">Experiencia Laboral</span>
+          <div class="sec-line"></div>
+        </div>
+
+        <!-- EXP 1 -->
+        <div class="exp-card reveal">
+          <div class="exp-head">
+            <div class="exp-top">
+              <div class="exp-role">System Administrator</div>
+              <span class="exp-badge b-active">Actualmente</span>
+            </div>
+            <div class="exp-meta">
+              <span class="exp-company">Lãberit S.L.</span>
+              <div class="sep"></div>
+              <span class="exp-period">Jun 2022 – Actualidad</span>
+              <div class="sep"></div>
+              <span class="exp-period">+3 años</span>
+            </div>
+          </div>
+          <div class="exp-div"></div>
+          <div class="exp-body">
+            <ul class="exp-ul">
+              <li>Administración de infraestructuras IT en entornos cliente de alta complejidad, tanto <strong>on-premise como cloud</strong>, con cumplimiento estricto de SLA y alta disponibilidad.</li>
+              <li>Gestión de plataformas de virtualización con <strong>VMware vSphere</strong> y <strong>Microsoft Hyper-V</strong>: provisioning, snapshots, migración de VMs, troubleshooting avanzado y administración de almacenamiento en <strong>cabinas SAN y NAS</strong>.</li>
+              <li>Configuración, hardening y mantenimiento de <strong>firewalls Fortigate</strong> y switches <strong>FortiSwitch</strong>: definición de políticas de seguridad, VPNs SSL/IPSec, segmentación de redes mediante VLANs y monitorización continua del tráfico.</li>
+              <li>Diseño e implementación de estrategias de backup corporativo con <strong>Veeam Backup &amp; Replication</strong>: políticas de retención, pruebas de restauración, gestión de repositorios y reporting periódico.</li>
+              <li>Administración avanzada del ecosistema <strong>Microsoft 365</strong>: Exchange Online, Teams, SharePoint, OneDrive, Azure AD, Intune (MDM/MAM), licenciamiento y seguridad (MFA, Conditional Access, Defender).</li>
+              <li>Implantación, configuración y soporte de soluciones <strong>VoIP</strong> corporativas: troncales SIP, extensiones, colas de llamada y mantenimiento de centralitas.</li>
+              <li>Resolución de <strong>incidencias críticas</strong> en producción, gestión de cambios (CAB), coordinación con proveedores y comunicación directa con clientes.</li>
+              <li>Elaboración de <strong>documentación técnica</strong>: runbooks, procedimientos operativos estándar (SOP) e inventario actualizado de infraestructura.</li>
+              <li>Automatización de tareas administrativas mediante scripts <strong>PowerShell</strong>: creación masiva de usuarios, reportes de licencias y auditorías de seguridad.</li>
+            </ul>
+            <div class="exp-techs">
+              <span class="etag">VMware vSphere</span>
+              <span class="etag">Hyper-V</span>
+              <span class="etag">Fortigate</span>
+              <span class="etag">Veeam B&amp;R</span>
+              <span class="etag">Azure AD</span>
+              <span class="etag">Microsoft 365</span>
+              <span class="etag">PowerShell</span>
+              <span class="etag">VoIP / SIP</span>
+              <span class="etag">SAN / NAS</span>
+              <span class="etag">Windows Server</span>
+              <span class="etag">Intune</span>
+            </div>
           </div>
         </div>
-        <div class="header-meta">
-          <a href="mailto:alejandro.ferrandiz@icloud.com" class="contact-item">
-            alejandro.ferrandiz@icloud.com
-            <span class="contact-icon">✉</span>
-          </a>
-          <div class="contact-item">
-            Alicante, España
-            <span class="contact-icon">◎</span>
+
+        <!-- EXP 2 -->
+        <div class="exp-card reveal">
+          <div class="exp-head">
+            <div class="exp-top">
+              <div class="exp-role">CAU – Centro de Atención al Usuario</div>
+              <span class="exp-badge b-past">Finalizado</span>
+            </div>
+            <div class="exp-meta">
+              <span class="exp-company">Lãberit S.L.</span>
+              <div class="sep"></div>
+              <span class="exp-period">Jul 2021 – Jun 2022</span>
+              <div class="sep"></div>
+              <span class="exp-period">1 año</span>
+            </div>
+          </div>
+          <div class="exp-div"></div>
+          <div class="exp-body">
+            <ul class="exp-ul">
+              <li>Soporte técnico <strong>N1 y N2</strong> para usuarios corporativos en modalidad remota y presencial, cubriendo múltiples clientes simultáneos bajo acuerdo de nivel de servicio exigente.</li>
+              <li>Gestión y seguimiento de tickets en plataforma <strong>ITSM</strong>, escalado de incidencias según matriz de prioridades y coordinación fluida con equipos de sistemas y networking.</li>
+              <li>Resolución de incidencias en puesto de trabajo (hardware/software), red corporativa, dispositivos de impresión y aplicaciones del ecosistema <strong>Office 365</strong> en entornos Active Directory.</li>
+              <li>Gestión del ciclo de vida de usuarios: creación de cuentas, configuración de equipos, asignación de permisos y accesos corporativos en entornos <strong>Active Directory</strong> y Microsoft 365.</li>
+              <li>Atención directa al cliente con capacidad para comunicar soluciones técnicas de forma clara y comprensible para usuarios no técnicos.</li>
+            </ul>
+            <div class="exp-techs">
+              <span class="etag">ITSM</span>
+              <span class="etag">Active Directory</span>
+              <span class="etag">Office 365</span>
+              <span class="etag">Windows 10/11</span>
+              <span class="etag">Soporte N1/N2</span>
+              <span class="etag">Hardware</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXP 3 -->
+        <div class="exp-card reveal">
+          <div class="exp-head">
+            <div class="exp-top">
+              <div class="exp-role">CAU – Prácticas Profesionales CFGS ASIR</div>
+              <span class="exp-badge b-intern">Prácticas</span>
+            </div>
+            <div class="exp-meta">
+              <span class="exp-company">Lãberit S.L.</span>
+              <div class="sep"></div>
+              <span class="exp-period">Mar 2021 – Jun 2021</span>
+              <div class="sep"></div>
+              <span class="exp-period">3 meses</span>
+            </div>
+          </div>
+          <div class="exp-div"></div>
+          <div class="exp-body">
+            <ul class="exp-ul">
+              <li>Prácticas de empresa del CFGS en Administración de Sistemas Informáticos en Red (ASIR): soporte técnico a usuarios, puesta en marcha y configuración de equipos de escritorio y portátiles corporativos.</li>
+              <li>Resolución de incidencias de primer nivel bajo supervisión del equipo técnico, adquiriendo experiencia en entorno profesional real desde el primer día.</li>
+              <li>Incorporación definitiva a la empresa al finalizar el período de prácticas.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMACION -->
+      <div id="formacion" style="margin-top:48px">
+        <div class="sec-head reveal">
+          <span class="sec-num">02</span>
+          <span class="sec-title">Formación Académica</span>
+          <div class="sec-line"></div>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon ei-cur">🖥️</div>
+          <div>
+            <div class="edu-deg">CFGS – Desarrollo de Aplicaciones Multiplataforma (DAM) <span class="in-prog">En curso</span></div>
+            <div class="edu-school">IES Mare Nostrum · Alicante</div>
+            <div class="edu-per">Sep 2024 – Actualidad · Ampliación de competencias hacia desarrollo de software</div>
+          </div>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon ei-asir">🖧</div>
+          <div>
+            <div class="edu-deg">CFGS – Administración de Sistemas Informáticos en Red (ASIR)</div>
+            <div class="edu-school">IES Mare Nostrum · Alicante</div>
+            <div class="edu-per">Sep 2019 – Jun 2021 · Nota final con prácticas en empresa incluidas</div>
+          </div>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon ei-bach">📐</div>
+          <div>
+            <div class="edu-deg">Bachillerato Científico-Tecnológico</div>
+            <div class="edu-school">IES Figueras Pacheco · Alicante</div>
+            <div class="edu-per">Sep 2017 – May 2019</div>
           </div>
         </div>
       </div>
     </div>
-  </header>
 
-  <!-- MAIN -->
-  <div class="container">
-    <div class="main-grid">
+    <!-- RIGHT -->
+    <div id="tecnologias">
 
-      <!-- COL MAIN -->
-      <div class="col-main">
-
-        <!-- PERFIL -->
-        <div class="section reveal">
-          <div class="section-label">Perfil Profesional</div>
-          <p class="profile-text">
-            Técnico en Sistemas con más de 5 años de experiencia en entornos empresariales, especializado en administración de infraestructuras IT, virtualización, seguridad perimetral y soporte técnico corporativo. Actualmente ampliando competencias en desarrollo de software mediante el CFGS en Desarrollo de Aplicaciones Multiplataforma.
-          </p>
+      <!-- TECH STACK -->
+      <div class="scard reveal">
+        <div class="scard-title">Stack Tecnológico</div>
+        <div class="group-label">Virtualización &amp; Almacenamiento</div>
+        <div class="tech-grid">
+          <span class="ttag hl">VMware vSphere</span>
+          <span class="ttag hl">Hyper-V</span>
+          <span class="ttag">Veeam B&amp;R</span>
+          <span class="ttag">SAN</span>
+          <span class="ttag">NAS</span>
         </div>
-
-        <!-- EXPERIENCIA -->
-        <div class="section reveal">
-          <div class="section-label">Experiencia Laboral</div>
-
-          <div class="exp-item">
-            <div class="exp-header">
-              <div class="exp-role">System Administrator</div>
-              <div class="exp-period">Jun 2022 – Actualidad</div>
-            </div>
-            <div class="exp-company">Lãberit S.L.</div>
-            <ul class="exp-bullets">
-              <li>Administración de infraestructuras IT en entornos cliente (on-premise y cloud).</li>
-              <li>Gestión de virtualización con VMware y Hyper-V; administración de cabinas y NAS.</li>
-              <li>Configuración y mantenimiento de firewalls Fortigate y switches FortiSwitch.</li>
-              <li>Gestión de backups corporativos con Veeam Backup &amp; Replication.</li>
-              <li>Administración de entornos Microsoft 365 (Exchange Online, Teams, Azure AD).</li>
-              <li>Implantación y soporte de soluciones VoIP.</li>
-              <li>Resolución de incidencias críticas y gestión de cambios en producción.</li>
-            </ul>
-          </div>
-
-          <div class="exp-item">
-            <div class="exp-header">
-              <div class="exp-role">CAU – Centro de Atención al Usuario</div>
-              <div class="exp-period">Jul 2021 – Jun 2022</div>
-            </div>
-            <div class="exp-company">Lãberit S.L.</div>
-            <ul class="exp-bullets">
-              <li>Soporte técnico N1/N2 para usuarios corporativos, remoto y presencial.</li>
-              <li>Gestión de tickets en plataforma ITSM y coordinación con equipos de sistemas.</li>
-              <li>Resolución de incidencias en puesto de trabajo, red y aplicaciones Office 365.</li>
-            </ul>
-          </div>
-
-          <div class="exp-item">
-            <div class="exp-header">
-              <div class="exp-role">CAU – Prácticas CFGS ASIR</div>
-              <div class="exp-period">Mar 2021 – Jun 2021</div>
-            </div>
-            <div class="exp-company">Lãberit S.L.</div>
-            <ul class="exp-bullets">
-              <li>Soporte técnico, configuración de equipos y resolución de incidencias.</li>
-            </ul>
-          </div>
+        <div class="group-label">Microsoft &amp; Cloud</div>
+        <div class="tech-grid">
+          <span class="ttag hl">Microsoft 365</span>
+          <span class="ttag hl">Azure AD</span>
+          <span class="ttag">Exchange Online</span>
+          <span class="ttag">Intune</span>
+          <span class="ttag">Teams</span>
+          <span class="ttag">SharePoint</span>
+          <span class="ttag">Defender</span>
         </div>
-
-        <!-- FORMACIÓN -->
-        <div class="section reveal">
-          <div class="section-label">Formación Académica</div>
-
-          <div class="edu-item">
-            <div class="edu-degree">
-              CFGS – Desarrollo de Aplicaciones Multiplataforma
-              <span class="edu-badge">En Curso</span>
-            </div>
-            <div class="edu-school">IES Mare Nostrum · Alicante</div>
-            <div class="edu-period">Sep 2024 – Actualidad</div>
-          </div>
-
-          <div class="edu-item">
-            <div class="edu-degree">CFGS – Administración de Sistemas Informáticos en Red</div>
-            <div class="edu-school">IES Mare Nostrum · Alicante</div>
-            <div class="edu-period">Sep 2019 – Jun 2021</div>
-          </div>
-
-          <div class="edu-item">
-            <div class="edu-degree">Bachillerato Científico-Tecnológico</div>
-            <div class="edu-school">IES Figueras Pacheco · Alicante</div>
-            <div class="edu-period">Sep 2017 – May 2019</div>
-          </div>
+        <div class="group-label">Redes &amp; Seguridad</div>
+        <div class="tech-grid">
+          <span class="ttag hl">Fortigate</span>
+          <span class="ttag">FortiSwitch</span>
+          <span class="ttag">TCP/IP</span>
+          <span class="ttag">VPN SSL/IPSec</span>
+          <span class="ttag">VLAN</span>
+          <span class="ttag">VoIP / SIP</span>
+          <span class="ttag">DNS / DHCP</span>
         </div>
-
+        <div class="group-label">Sistemas &amp; Scripting</div>
+        <div class="tech-grid">
+          <span class="ttag hl">Windows Server</span>
+          <span class="ttag hl">Active Directory</span>
+          <span class="ttag hl">PowerShell</span>
+          <span class="ttag">GPO</span>
+          <span class="ttag">ITSM</span>
+          <span class="ttag">Linux</span>
+        </div>
       </div>
 
-      <!-- COL SIDE -->
-      <div class="col-side">
-
-        <!-- TECNOLOGÍAS -->
-        <div class="side-section reveal">
-          <div class="side-label">Tecnologías</div>
-          <div class="tech-grid">
-            <span class="tech-pill">Microsoft 365</span>
-            <span class="tech-pill">Azure AD</span>
-            <span class="tech-pill">VMware vSphere</span>
-            <span class="tech-pill">Hyper-V</span>
-            <span class="tech-pill">Veeam Backup</span>
-            <span class="tech-pill">Fortigate</span>
-            <span class="tech-pill">FortiSwitch</span>
-            <span class="tech-pill">Windows Server</span>
-            <span class="tech-pill">Active Directory</span>
-            <span class="tech-pill">TCP/IP</span>
-            <span class="tech-pill">VoIP</span>
-            <span class="tech-pill">SAN / NAS</span>
-            <span class="tech-pill">PowerShell</span>
-          </div>
-        </div>
-
-        <!-- CERTIFICACIONES -->
-        <div class="side-section reveal">
-          <div class="side-label">Certificaciones</div>
-          <div class="cert-item">
+      <!-- CERT -->
+      <div class="scard reveal">
+        <div class="scard-title">Certificaciones</div>
+        <div class="cert-row">
+          <div class="cert-ico">🏆</div>
+          <div>
             <div class="cert-name">Microsoft 365 Fundamentals</div>
             <div class="cert-code">MS-900</div>
+            <div class="cert-iss">Microsoft · Certified</div>
           </div>
         </div>
-
-        <!-- IDIOMAS -->
-        <div class="side-section reveal">
-          <div class="side-label">Idiomas</div>
-          <div class="lang-item">
-            <div>
-              <div class="lang-name">Español</div>
-              <div class="lang-level">Nativo</div>
-            </div>
-            <div class="lang-dots">
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-            </div>
-          </div>
-          <div class="lang-item">
-            <div>
-              <div class="lang-name">Valenciano</div>
-              <div class="lang-level">Nativo</div>
-            </div>
-            <div class="lang-dots">
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-            </div>
-          </div>
-          <div class="lang-item">
-            <div>
-              <div class="lang-name">Inglés</div>
-              <div class="lang-level">Intermedio</div>
-            </div>
-            <div class="lang-dots">
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot active"></div>
-              <div class="lang-dot"></div>
-              <div class="lang-dot"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- COMPETENCIAS -->
-        <div class="side-section reveal">
-          <div class="side-label">Competencias</div>
-          <div class="skill-item">Resolución de incidencias</div>
-          <div class="skill-item">Trabajo en equipo</div>
-          <div class="skill-item">Atención al cliente</div>
-          <div class="skill-item">Gestión del tiempo</div>
-          <div class="skill-item">Proactividad</div>
-        </div>
-
       </div>
+
+      <!-- IDIOMAS -->
+      <div class="scard reveal">
+        <div class="scard-title">Idiomas</div>
+        <div class="lang-row">
+          <div><div class="lang-name">Español</div><div class="lang-lv">Nativo</div></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-row">
+          <div><div class="lang-name">Valenciano</div><div class="lang-lv">Nativo</div></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-row">
+          <div><div class="lang-name">Inglés</div><div class="lang-lv">Nivel B1–B2 · Intermedio</div></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+
+      <!-- SOFT SKILLS -->
+      <div class="scard reveal">
+        <div class="scard-title">Competencias</div>
+        <div class="skill-pill"><span style="font-size:15px">🔧</span> Resolución de incidencias críticas</div>
+        <div class="skill-pill"><span style="font-size:15px">👥</span> Trabajo en equipo y coordinación</div>
+        <div class="skill-pill"><span style="font-size:15px">🎯</span> Orientación al cliente</div>
+        <div class="skill-pill"><span style="font-size:15px">⏱️</span> Gestión eficiente del tiempo</div>
+        <div class="skill-pill"><span style="font-size:15px">🚀</span> Proactividad e iniciativa</div>
+        <div class="skill-pill"><span style="font-size:15px">📄</span> Documentación técnica</div>
+        <div class="skill-pill"><span style="font-size:15px">🔄</span> Gestión de cambios en producción</div>
+        <div class="skill-pill"><span style="font-size:15px">📡</span> Comunicación con proveedores</div>
+      </div>
+
+      <!-- ENTORNO -->
+      <div class="scard reveal">
+        <div class="scard-title">Perfil de Trabajo</div>
+        <div class="meta-row">
+          <span class="meta-label">Modalidad</span>
+          <span class="meta-badge">Presencial / Híbrido</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Sector</span>
+          <span class="meta-val">IT Services · MSP</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Empresa actual</span>
+          <span class="meta-val">Lãberit S.L.</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Ubicación</span>
+          <span class="meta-val">Alicante, España</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Movilidad</span>
+          <span class="meta-val">Provincia de Alicante</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Experiencia total</span>
+          <span class="meta-val">+5 años</span>
+        </div>
+      </div>
+
     </div>
-
-    <!-- FOOTER -->
-    <footer>
-      <span>Alejandro Ferrándiz Pérez · 2025</span>
-      <span style="font-size:10px;letter-spacing:.1em;">ADMINISTRADOR DE SISTEMAS · TÉCNICO IT</span>
-    </footer>
   </div>
+</main>
 
-  <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+<footer>
+  <div>
+    <div class="footer-name">Alejandro Ferrándiz Pérez</div>
+    <div class="footer-meta" style="margin-top:3px">Administrador de Sistemas · Técnico IT · Alicante, España</div>
+  </div>
+  <div class="footer-meta">alejandro.ferrandiz@icloud.com · 2025</div>
+</footer>
 
-    // Stagger on load
-    document.addEventListener('DOMContentLoaded', () => {
-      const first = document.querySelectorAll('.reveal');
-      first.forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), 200 + i * 100);
-      });
-    });
-  </script>
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 55);
+  });
+}, {threshold: .08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
